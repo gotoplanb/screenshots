@@ -1,39 +1,26 @@
 import os
-from sys import argv
 import selenium.webdriver as webdriver
 import contextlib
 
-script, username, password = argv
-
-urls = {
-    'home': 'http://cloud.qa1.kony.com/',
-    'cloud-products': 'http://cloud.qa1.kony.com/cloud-products',
-    'products-visualization-gettingstarted': 'http://cloud.qa1.kony.com/products/visualization/getting-started',
-    'products-development-gettingstarted': 'http://cloud.qa1.kony.com/products/development/getting-started',
-    'products-management-gettingstarted': 'http://cloud.qa1.kony.com/products/management/getting-started',
-    'blog': 'http://cloud.qa1.kony.com/blog',
-    'blog-testingyourappsios': 'http://cloud.qa1.kony.com/blog/platform/testing-your-apps-ios',
-    'support': 'http://cloud.qa1.kony.com/support',
-    'manage': 'https://manage.qa-kony.com/#/manage-clouds/'
-}
+import settings
 
 with contextlib.closing(webdriver.Firefox()) as driver:
     
     driver.implicitly_wait(10)
 
-    driver.get('http://cloud.qa1.kony.com')
-    login_email = driver.find_element_by_id('PrimaryEmail')
-    login_email.send_keys(username)
-    login_password = driver.find_element_by_id('Password')
-    login_password.send_keys(password)
-    login_submit = driver.find_element_by_css_selector('.konyButton')
+    driver.get(settings.auth_url)
+    login_email = driver.find_element_by_id(settings.auth_username_id)
+    login_email.send_keys(settings.username)
+    login_password = driver.find_element_by_id(settings.auth_password_id)
+    login_password.send_keys(settings.password)
+    login_submit = driver.find_element_by_css_selector(settings.auth_submit_class)
     login_submit.click()
     
-    for key in urls.keys():
+    for key in settings.urls.keys():
         
-        print key, urls[key]
+        print key, settings.urls[key]
     
-        driver.get(urls[key])
+        driver.get(settings.urls[key])
         
         driver.set_window_size(1280,800)
         os.rename('new/desktop/desktop ' + key + '.png','old/desktop/desktop ' + key + '.png')
