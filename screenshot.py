@@ -1,6 +1,9 @@
 import os
+from sys import argv
 import selenium.webdriver as webdriver
 import contextlib
+
+script, username, password = argv
 
 urls = {
     'home': 'http://cloud.qa1.kony.com/',
@@ -20,9 +23,9 @@ with contextlib.closing(webdriver.Firefox()) as driver:
 
     driver.get('http://cloud.qa1.kony.com')
     login_email = driver.find_element_by_id('PrimaryEmail')
-    login_email.send_keys('user.one@example.com')
+    login_email.send_keys(username)
     login_password = driver.find_element_by_id('Password')
-    login_password.send_keys('password')
+    login_password.send_keys(password)
     login_submit = driver.find_element_by_css_selector('.konyButton')
     login_submit.click()
     
