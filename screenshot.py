@@ -24,27 +24,51 @@ with contextlib.closing(webdriver.Firefox()) as driver:
         driver.get(settings.urls[key])
         
         driver.set_window_size(1280,800)
-        os.rename('new/desktop/desktop ' + key + '.png','old/desktop/desktop ' + key + '.png')
-        driver.get_screenshot_as_file('new/desktop/desktop ' + key + '.png')
+        oldFile = 'old/desktop/desktop ' + key + '.png'
+        newFile = 'new/desktop/desktop ' + key + '.png'
+        diffFile = 'diff/desktop/desktop ' + key + '.png'
+        os.rename(newFile,oldFile)
+        driver.get_screenshot_as_file(newFile)
+        subprocess.call(["imgdiff", oldFile, newFile, "-o", diffFile])
     
         driver.set_window_size(768,1024)
-        os.rename('new/ipad/ipad ' + key + '.png','old/ipad/ipad ' + key + '.png')
-        driver.get_screenshot_as_file('new/ipad/ipad ' + key + '.png') 
+        oldFile = 'old/ipad/ipad ' + key + '.png'
+        newFile = 'new/ipad/ipad ' + key + '.png'
+        diffFile = 'diff/ipad/ipad ' + key + '.png'
+        os.rename(newFile,oldFile)
+        driver.get_screenshot_as_file(newFile)
+        subprocess.call(["imgdiff", oldFile, newFile, "-o", diffFile])
     
         driver.set_window_size(320,568)
-        os.rename('new/iphone/iphone ' + key + '.png','old/iphone/iphone ' + key + '.png')
-        driver.get_screenshot_as_file('new/iphone/iphone ' + key + '.png')
+        oldFile = 'old/iphone/iphone ' + key + '.png'
+        newFile = 'new/iphone/iphone ' + key + '.png'
+        diffFile = 'diff/iphone/iphone ' + key + '.png'
+        os.rename(newFile,oldFile)
+        driver.get_screenshot_as_file(newFile)
+        subprocess.call(["imgdiff", oldFile, newFile, "-o", diffFile])
     
         driver.set_window_size(320,640)
-        os.rename('new/galaxys4/galaxys4 ' + key + '.png','old/galaxys4/galaxys4 ' + key + '.png')
-        driver.get_screenshot_as_file('new/galaxys4/galaxys4 ' + key + '.png') 
+        oldFile = 'old/galaxys4/galaxys4 ' + key + '.png'
+        newFile = 'new/galaxys4/galaxys4 ' + key + '.png'
+        diffFile = 'diff/galaxys4/galaxys4 ' + key + '.png'
+        os.rename(newFile,oldFile)
+        driver.get_screenshot_as_file(newFile)
+        subprocess.call(["imgdiff", oldFile, newFile, "-o", diffFile])
     
         driver.set_window_size(601,906)
-        os.rename('new/nexus7/nexus7 ' + key + '.png','old/nexus7/nexus7 ' + key + '.png')
-        driver.get_screenshot_as_file('new/nexus7/nexus7 ' + key + '.png')
+        oldFile = 'old/nexus7/nexus7 ' + key + '.png'
+        newFile = 'new/nexus7/nexus7 ' + key + '.png'
+        diffFile = 'diff/nexus7/nexus7 ' + key + '.png'
+        os.rename(newFile,oldFile)
+        driver.get_screenshot_as_file(newFile)
+        subprocess.call(["imgdiff", oldFile, newFile, "-o", diffFile])
     
         driver.set_window_size(384,592)
-        os.rename('new/nexus4/nexus4 ' + key + '.png','old/nexus4/nexus4 ' + key + '.png')
-        driver.get_screenshot_as_file('new/nexus4/nexus4 ' + key + '.png')
+        oldFile = 'old/nexus4/nexus4 ' + key + '.png'
+        newFile = 'new/nexus4/nexus4 ' + key + '.png'
+        diffFile = 'diff/nexus4/nexus4 ' + key + '.png'
+        os.rename(newFile,oldFile)
+        driver.get_screenshot_as_file(newFile)
+        subprocess.call(["imgdiff", oldFile, newFile, "-o", diffFile])
 
 driver.quit()
