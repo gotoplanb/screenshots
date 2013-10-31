@@ -1,4 +1,5 @@
 import os
+import subprocess
 import selenium.webdriver as webdriver
 import contextlib
 
@@ -24,7 +25,7 @@ with contextlib.closing(webdriver.Firefox()) as driver:
         
         driver.set_window_size(1280,800)
         os.rename('new/desktop/desktop ' + key + '.png','old/desktop/desktop ' + key + '.png')
-        driver.get_screenshot_as_file('new/desktop/desktop ' + key + '.png') 
+        driver.get_screenshot_as_file('new/desktop/desktop ' + key + '.png')
     
         driver.set_window_size(768,1024)
         os.rename('new/ipad/ipad ' + key + '.png','old/ipad/ipad ' + key + '.png')
