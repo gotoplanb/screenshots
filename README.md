@@ -14,6 +14,6 @@ Create a virtual environment to isolation your packages:
 
 Install necessary python packages:
 
-* [] `brew install imagemagick`
-* [] `pip install selenium`
-* [] `pip install imgdiff`
+1. `brew install imagemagick`
+1. `pip install selenium`
+1. `pip install imgdiff`
